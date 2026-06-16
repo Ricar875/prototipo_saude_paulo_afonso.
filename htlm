@@ -1,1 +1,251 @@
 
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Saúde Digital Paulo Afonso - Protótipo</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .app-bg { background-color: #f0f4f8; }
+        .card { background: white; border-radius: 15px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        .btn-primary { background-color: #0056b3; color: white; padding: 12px; border-radius: 10px; width: 100%; font-weight: bold; }
+        .nav-icon { font-size: 24px; color: #64748b; }
+        .nav-active { color: #0056b3; }
+        .hidden { display: none; }
+    </style>
+</head>
+<body class="app-bg font-sans min-h-screen pb-20">
+
+    <!-- Header -->
+    <header class="bg-blue-700 text-white p-6 rounded-b-3xl shadow-lg">
+        <div class="flex justify-between items-center">
+            <div>
+                <p class="text-sm opacity-80">Bem-vindo(a),</p>
+                <h1 class="text-xl font-bold">Cidadão de Paulo Afonso</h1>
+            </div>
+            <div class="bg-blue-500 p-2 rounded-full">
+                <i class="fas fa-user-circle text-2xl"></i>
+            </div>
+        </div>
+    </header>
+
+    <!-- App Content -->
+    <main class="p-4 space-y-6">
+
+        <!-- DASHBOARD VIEW -->
+        <section id="view-home" class="view space-y-4">
+            <div class="card p-4 border-l-8 border-green-500">
+                <div class="flex items-center space-x-4">
+                    <i class="fas fa-calendar-check text-green-500 text-2xl"></i>
+                    <div>
+                        <h3 class="font-bold">Próxima Consulta</h3>
+                        <p class="text-sm text-gray-600">Cardiologia - 18/06 às 14:00</p>
+                        <p class="text-xs text-blue-600">UBS Centro - Dr. Ricardo</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-2 gap-4">
+                <button onclick="showView('view-agendar')" class="card p-6 flex flex-col items-center justify-center space-y-2 hover:bg-blue-50 transition">
+                    <i class="fas fa-notes-medical text-blue-600 text-3xl"></i>
+                    <span class="font-semibold text-sm">Marcar Consulta</span>
+                </button>
+                <button onclick="showView('view-exames')" class="card p-6 flex flex-col items-center justify-center space-y-2 hover:bg-blue-50 transition">
+                    <i class="fas fa-microscope text-purple-600 text-3xl"></i>
+                    <span class="font-semibold text-sm">Meus Exames</span>
+                </button>
+                <button onclick="showView('view-telemed')" class="card p-6 flex flex-col items-center justify-center space-y-2 hover:bg-blue-50 transition">
+                    <i class="fas fa-video text-red-500 text-3xl"></i>
+                    <span class="font-semibold text-sm">Telemedicina</span>
+                </button>
+                <button class="card p-6 flex flex-col items-center justify-center space-y-2 hover:bg-blue-50 transition">
+                    <i class="fas fa-truck-medical text-orange-500 text-3xl"></i>
+                    <span class="font-semibold text-sm">Transporte TFD</span>
+                </button>
+            </div>
+        </section>
+
+        <!-- AGENDAR VIEW -->
+        <section id="view-agendar" class="view hidden space-y-4">
+            <button onclick="showView('view-home')" class="text-blue-700 font-bold"><i class="fas fa-arrow-left"></i> Voltar</button>
+            <h2 class="text-xl font-bold">Novo Agendamento</h2>
+            <div class="card p-4 space-y-4">
+                <div>
+                    <label class="block text-sm font-medium text-gray-700">Especialidade</label>
+                    <select class="w-full p-3 border rounded-lg mt-1">
+                        <option>Clínico Geral (UBS)</option>
+                        <option>Pediatria</option>
+                        <option>Ginecologia</option>
+                        <option>Análises Clínicas (Exames)</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700">Localização</label>
+                    <select class="w-full p-3 border rounded-lg mt-1">
+                        <option>UBS Centro</option>
+                        <option>UBS BTN II</option>
+                        <option>Hospital Municipal</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700">Data Preferencial</label>
+                    <input type="date" class="w-full p-3 border rounded-lg mt-1">
+                </div>
+                <button onclick="alert('Consulta Solicitada! Aguarde a confirmação via WhatsApp.')" class="btn-primary mt-4">Solicitar Agendamento</button>
+            </div>
+        </section>
+
+        <!-- EXAMES VIEW -->
+        <section id="view-exames" class="view hidden space-y-4">
+            <button onclick="showView('view-home')" class="text-blue-700 font-bold"><i class="fas fa-arrow-left"></i> Voltar</button>
+            <h2 class="text-xl font-bold">Resultados Laboratoriais</h2>
+            <div class="space-y-3">
+                <div class="card p-4 flex justify-between items-center">
+                    <div>
+                        <p class="font-bold">Hemograma Completo</p>
+                        <p class="text-xs text-gray-500">Realizado em 10/06/2026</p>
+                    </div>
+                    <button class="text-blue-600 bg-blue-100 p-2 rounded-lg"><i class="fas fa-download"></i> PDF</button>
+                </div>
+                <div class="card p-4 flex justify-between items-center opacity-60">
+                    <div>
+                        <p class="font-bold">Glicose</p>
+                        <p class="text-xs text-gray-500">Aguardando Análise...</p>
+                    </div>
+                    <i class="fas fa-clock text-gray-400"></i>
+                </div>
+            </div>
+        </section>
+
+        <!-- TELEMED VIEW -->
+        <section id="view-telemed" class="view hidden space-y-4">
+            <button onclick="showView('view-home')" class="text-blue-700 font-bold"><i class="fas fa-arrow-left"></i> Voltar</button>
+            <h2 class="text-xl font-bold">Telemedicina Paulo Afonso</h2>
+            <div class="card p-8 text-center space-y-4">
+                <div class="animate-pulse flex justify-center">
+                    <div class="h-20 w-20 bg-red-100 rounded-full flex items-center justify-center">
+                        <i class="fas fa-video text-red-500 text-3xl"></i>
+                    </div>
+                </div>
+                <h3 class="font-bold">Sua consulta online</h3>
+                <p class="text-sm text-gray-600">O médico está revisando seu histórico. Você é o <strong>2º da fila</strong>.</p>
+                <div class="bg-blue-50 p-3 rounded-lg text-blue-700 text-sm">
+                    Tempo estimado: 08 min
+                </div>
+                <button onclick="alert('Iniciando Chamada de Vídeo Segura...')" class="btn-primary bg-green-600">Entrar na Sala Virtual</button>
+            </div>
+        </section>
+
+        <!-- HISTÓRICO VIEW -->
+        <section id="view-historico" class="view hidden space-y-4">
+            <button onclick="showView('view-home')" class="text-blue-700 font-bold"><i class="fas fa-arrow-left"></i> Voltar</button>
+            <h2 class="text-xl font-bold">Meu Histórico de Saúde</h2>
+            <div class="space-y-3">
+                <div class="card p-4">
+                    <p class="text-xs text-gray-500">Última Atualização: 15/06/2026</p>
+                    <div class="mt-2 space-y-2">
+                        <div class="flex justify-between border-b pb-1">
+                            <span class="text-sm font-semibold">Alergias:</span>
+                            <span class="text-sm text-red-600">Dipirona</span>
+                        </div>
+                        <div class="flex justify-between border-b pb-1">
+                            <span class="text-sm font-semibold">Tipo Sanguíneo:</span>
+                            <span class="text-sm">O+</span>
+                        </div>
+                        <div class="flex justify-between border-b pb-1">
+                            <span class="text-sm font-semibold">Pressão Média:</span>
+                            <span class="text-sm">12/8</span>
+                        </div>
+                    </div>
+                </div>
+                <h3 class="font-bold text-lg mt-4">Linha do Tempo</h3>
+                <div class="border-l-2 border-blue-200 ml-4 space-y-6">
+                    <div class="relative pl-6">
+                        <div class="absolute w-3 h-3 bg-blue-600 rounded-full -left-[7px] top-1"></div>
+                        <p class="text-xs font-bold text-blue-600">10/05/2026</p>
+                        <p class="font-semibold">Consulta Pré-Natal</p>
+                        <p class="text-xs text-gray-500">UBS BTN II - Enf. Maria</p>
+                    </div>
+                    <div class="relative pl-6">
+                        <div class="absolute w-3 h-3 bg-gray-400 rounded-full -left-[7px] top-1"></div>
+                        <p class="text-xs font-bold text-gray-500">15/03/2026</p>
+                        <p class="font-semibold">Vacina Gripe (H1N1)</p>
+                        <p class="text-xs text-gray-500">UBS Centro</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PERFIL/CADASTRO VIEW -->
+        <section id="view-perfil" class="view hidden space-y-4">
+            <button onclick="showView('view-home')" class="text-blue-700 font-bold"><i class="fas fa-arrow-left"></i> Voltar</button>
+            <h2 class="text-xl font-bold">Meu Perfil (Cadastro)</h2>
+            <div class="card p-4 space-y-4">
+                <div class="flex flex-col items-center py-4">
+                    <div class="w-24 h-24 bg-gray-200 rounded-full mb-2 flex items-center justify-center">
+                        <i class="fas fa-camera text-gray-400 text-2xl"></i>
+                    </div>
+                    <p class="text-xs text-blue-600">Alterar foto</p>
+                </div>
+                <div class="space-y-3">
+                    <div>
+                        <label class="block text-xs font-medium text-gray-500 uppercase">Nome Completo</label>
+                        <input type="text" value="João Silva de Paulo Afonso" class="w-full p-2 border-b bg-transparent focus:border-blue-600 outline-none">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-medium text-gray-500 uppercase">CPF</label>
+                        <input type="text" value="123.456.789-00" class="w-full p-2 border-b bg-transparent focus:border-blue-600 outline-none">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-medium text-gray-500 uppercase">Cartão SUS</label>
+                        <input type="text" value="700 1234 5678 9012" class="w-full p-2 border-b bg-transparent focus:border-blue-600 outline-none">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-medium text-gray-500 uppercase">Endereço</label>
+                        <input type="text" value="Rua da Harmonia, 100 - BTN I" class="w-full p-2 border-b bg-transparent focus:border-blue-600 outline-none">
+                    </div>
+                </div>
+                <button onclick="alert('Perfil Atualizado com Sucesso!')" class="btn-primary mt-4">Salvar Alterações</button>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Bottom Navigation -->
+    <nav class="fixed bottom-0 left-0 right-0 bg-white border-t p-3 flex justify-around items-center">
+        <button onclick="showView('view-home')" class="flex flex-col items-center">
+            <i class="fas fa-home nav-icon nav-active"></i>
+            <span class="text-[10px] font-bold">Início</span>
+        </button>
+        <button class="flex flex-col items-center">
+            <i class="fas fa-bell nav-icon"></i>
+            <span class="text-[10px]">Avisos</span>
+        </button>
+        <button class="flex flex-col items-center">
+            <i class="fas fa-heart-pulse nav-icon"></i>
+            <span class="text-[10px]">Minha Saúde</span>
+        </button>
+        <button class="flex flex-col items-center">
+            <i class="fas fa-gear nav-icon"></i>
+            <span class="text-[10px]">Perfil</span>
+        </button>
+    </nav>
+
+    <script>
+        function showView(viewId) {
+            // Esconder todas as views
+            document.querySelectorAll('.view').forEach(v => v.classList.add('hidden'));
+            // Mostrar a selecionada
+            document.getElementById(viewId).classList.remove('hidden');
+            
+            // Atualizar ícones nav (simples)
+            document.querySelectorAll('nav button i').forEach(i => i.classList.remove('nav-active'));
+            if(viewId === 'view-home') {
+                document.querySelector('nav button:first-child i').classList.add('nav-active');
+            }
+        }
+    </script>
+</body>
+</html>
